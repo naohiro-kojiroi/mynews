@@ -23,7 +23,7 @@ Route::controller(NewsController::class)->prefix('admin')->group(function() {
     Route::get('news/create', 'add');
 });
 
-//課題1：Routing
+//課題1：URLとControllerやActionをひも付ける機能:Routing
 
 /*課題2 : ・書き方が複雑化したとしても、後々の見やすさ、わかりやすさがある
 　　　　　・一つのcontrollerの中身としてまとめられるので管理しやすくなる
