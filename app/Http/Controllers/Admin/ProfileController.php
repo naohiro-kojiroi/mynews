@@ -25,19 +25,3 @@ class ProfileController extends Controller
         return redirect('admin/profile/edit');
     }
 }
-
-/*課題1
-controllerには何個までActionを実装できるのか、
-また、何個くらいの実装が一般的なのか、
-指示によってはcontroller1とcontroller2を行ったり来たりするような
-物もあるの*/
-
-/*課題2
-データをやり取りしたり出力するデータを
-生成するところ*/
-
-/*課題3
-ユーザーから来たアクセスをRoutingが受け取り、
-controllerに渡している。
-(controllerの中にあるActionに渡している)
-*/
