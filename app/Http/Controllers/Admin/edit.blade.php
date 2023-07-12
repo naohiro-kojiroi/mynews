@@ -1,5 +1,3 @@
-/* 課題10 */
-
 <!DOCTYPE html>
 <html>
     <head>
