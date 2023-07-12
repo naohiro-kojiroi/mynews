@@ -20,14 +20,8 @@ Route::get('/', function () {
 //ここから追記
 use App\Http\Controllers\Admin\NewsController;
 Route::controller(NewsController::class)->prefix('admin')->group(function() {
-    Route::get('news/create', 'add');
-    Route::get('profile/edit', 'edit');
+    Route::get('news/create', 'add')->middleware('auth');
 });
-
-
-
-
-
 
 Auth::routes();
 
