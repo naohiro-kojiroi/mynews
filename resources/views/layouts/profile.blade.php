@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
         <!-- CSRF Token -->
-        {{-- 後の章で背t名刺ます --}}
+        {{-- 後の章で背名刺ます --}}
         <mete name="csrf-token" content="{{ csrf_token() }}">
             
             {{-- 各ページごとにtitleタグを入れるために@yieldで明けておきます。 --}}
@@ -49,6 +49,28 @@
                                                 
                                 <!-- Right Side Of Navber -->
                                 <ul class="navber-nav">
+                                    {{-- 課題にて追記 --}}
+                                    @guest
+                                    <li><a class="nav-link" href="{{ route('login') }}">{{ __('messages.login') }}</a></li>
+                                    @else
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                            {{ __('messages.logout') }}
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                        </form>
+                                        </div>
+                                    </li>
+                                    @endguest
+                                    
                                 </ul>
                             </div>
                         </div>
