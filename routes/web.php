@@ -20,8 +20,8 @@ Route::get('/', function () {
 //ここから追記
 use App\Http\Controllers\Admin\ProfileController;
 Route::controller(ProfileController::class)->prefix('admin')->name('adomin.')->middleware('auth')->group(function() {
-    Route::get('news/create', 'add')->name('news.sdd');
-    Route::post('news/create','create')->name('news.create');
+    Route::get('profile/create', 'add')->name('news.sdd');
+    Route::post('profile/edit','edit')->name('news.create');
     //課題追記13
     Route::post('profile/creat','add')->name('profile.create');
     Route::post('profile/edit','add')->name('profile.update');
