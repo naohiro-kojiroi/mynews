@@ -18,8 +18,8 @@ Route::get('/', function () {
 });
 
 //ここから追記
-use App\Http\Controllers\Admin\NewsController;
-Route::controller(NewsController::class)->prefix('admin')->name('adomin.')->middleware('auth')->group(function() {
+use App\Http\Controllers\Admin\ProfileController;
+Route::controller(ProfileController::class)->prefix('admin')->name('adomin.')->middleware('auth')->group(function() {
     Route::get('news/create', 'add')->name('news.sdd');
     Route::post('news/create','create')->name('news.create');
     //課題追記13
