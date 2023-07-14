@@ -19,10 +19,12 @@ Route::get('/', function () {
 
 //ここから追記
 use App\Http\Controllers\Admin\NewsController;
-Route::controller(NewsController::class)->prefix('admin')->group(function() {
-    Route::get('news/create', 'add')->middleware('auth');
-    Route::get('profile/create', 'add')->middleware('auth');
-    Route::get('profile/edit', 'add')->middleware('auth');
+Route::controller(NewsController::class)->prefix('admin')->name('adomin.')->middleware('auth')->group(function() {
+    Route::get('news/create', 'add')->name('news.sdd');
+    Route::post('news/create','create')->name('news.create');
+    //課題追記13
+    Route::post('profile/creat','add')->name('profile.create');
+    Route::post('profile/edit','add')->name('profile.update');
 });
 
 Auth::routes();
