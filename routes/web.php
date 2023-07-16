@@ -18,10 +18,19 @@ Route::get('/', function () {
 });
 
 //ここから追記
+use App\Http\Controllers\Admin\NewsController;
+Route::controller(NewsController::class)->prefix('admin')->name('admin.')->group(function() {
+    Route::get('news/create', 'add')->name('news.add');
+    Route::post('news/create', 'create')->name('news.create');
+    
+});
+//課題09
+/*Route::controller(AAAController::class)->group(function() {
+Route::get('XXX','bbb');*/
 use App\Http\Controllers\Admin\ProfileController;
-Route::controller(ProfileController::class)->prefix('admin')->name('adomin.')->middleware('auth')->group(function() {
-    Route::get('profile/create', 'add')->name('news.sdd');
-    Route::post('profile/edit','edit')->name('news.create');
+Route::controller(ProfileController::class)->prefix('admin')->name('admin.')->middleware('auth')->group(function() {
+    Route::get('profile/create', 'add')->name('profile.add');
+    Route::get('profile/edit','edit')->name('profile.edit');
     //課題追記13
     Route::post('profile/creat','add')->name('profile.create');
     Route::post('profile/edit','add')->name('profile.update');
