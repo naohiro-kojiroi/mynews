@@ -12,16 +12,16 @@
     </body>
 </html>
 
-{{-- layouts/admin.blade.phpを読み込む --}}
-@extends('layouts.admin')
+{{-- layouts/profile.blade.phpを読み込む --}}
+@extends('layouts.profile')
 @section('title', 'プロフィール入力画面')
 
-{{-- admin.blade.phpの@yield('title')に'ニュースの新規作成'を埋め込む --}}
+{{-- profile.blade.phpの@yield('title')に'ニュースの新規作成'を埋め込む --}}
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 mx-auto">
-            <h2>ニュース新規作成</h2>
+            <h2>プロフィール入力画面</h2>
             <form action="{{ route('admin.news.create') }}" method="post" enctype="multipart/form-data">
                 
                 @if (count($errors) > 0)
