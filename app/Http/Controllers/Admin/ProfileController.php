@@ -1,4 +1,3 @@
-// 課題13わからない
 <?php
 
 namespace App\Http\Controllers\Admin;
