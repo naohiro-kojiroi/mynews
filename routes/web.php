@@ -35,8 +35,8 @@ Route::controller(ProfileController::class)->prefix('admin')->name('admin.')->mi
     Route::get('profile/create', 'add')->name('profile.add');
     Route::get('profile/edit', 'edit')->name('profile.edit');
     //課題追記13
-    Route::post('profile/creat','add')->name('profile.create');
-    Route::post('profile/edit','add')->name('profile.update');
+    Route::post('profile/creat','create')->name('profile.create');
+    Route::post('profile/edit','update')->name('profile.update');
 });
 
 Auth::routes();
