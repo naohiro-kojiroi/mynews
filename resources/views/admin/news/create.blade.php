@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 mx-auto">
-            <h2>ニュース新規作成</h2>
+            <h2>NEWS新規作成</h2>
             <form action="{{ route('admin.news.create') }}" method="post" enctype="multipart/form-data">
                 
                 @if (count($errors) > 0)
