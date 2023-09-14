@@ -49,3 +49,11 @@ Route::get('/', [PublicNewsController::class, 'index'])->name('news.index');
 
 use App\Http\Controllers\ProfileController as PublicProfileController;
 Route::get('/profile', [PublicProfileController::class, 'index'])->name('profile.index');
+
+use App\Http\Controllers\ContactController as ContactController;
+//入力フォームページ
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+//確認フォームページ
+Route::post('/contact/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
+//送信完了ページ
+Route::post('/contact/thanks', [ContactController::class, 'send'])->name('contact.send');

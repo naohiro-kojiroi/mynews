@@ -13,11 +13,15 @@ use App\Models\History;
 
 use Carbon\Carbon;
 
+use App\Models\Horse;
+
 class NewsController extends Controller
 {
     public function add()
     {
-        return view('admin.news.create');
+        $horses=Horse::all();
+        return view('admin.news.create', compact('horses'));
+        
     }
     
     public function create(Request $request)
@@ -51,14 +55,18 @@ class NewsController extends Controller
     public function index(Request $request)
     {
         $cond_title = $request->cond_title;
+        $cond_horse = $request->cond_horse;
+        $query = News::query();
         if ($cond_title != '') {
             //検索されたら検索結果を取得する
-            $posts = News::where('title', $cond_title)->get();
-        } else {
-            //それ以外はすべてのニュースを取得する
-            $posts = News::all();
-        }
-        return view('admin.news.index', ['posts' => $posts, 'cond_title' => $cond_title]);
+            $query->where('title', $cond_title);
+        } 
+        if($cond_horse != '') {
+            $query->orwhere('horse', $cond_horse);
+        } 
+        $posts = $query->get();
+        $horses = Horse::all();
+        return view('admin.news.index', ['posts' => $posts, 'cond_title' => $cond_title, 'cond_horse' => $cond_horse, 'horses' => $horses ]);
     }
     
     public function edit(Request $request)
@@ -68,7 +76,8 @@ class NewsController extends Controller
         if (empty($news)) {
             abort(404);
         }
-        return view('admin.news.edit', ['news_form' => $news]);
+        $horses=Horse::all();
+        return view('admin.news.edit', ['news_form' => $news, 'horses' => $horses]);
     }
     
     public function update(Request $request)

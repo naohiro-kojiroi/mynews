@@ -13,15 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('horses', function (Blueprint $table) {
             $table->id();
-            $table->string('title'); //ニュースのタイトルを保存するカラム
-            $table->string('horse');//馬の名前を保存するカラム
-            $table->string('body'); //ニュースの本文を保存するカラム
-            $table->string('image_path')->nullable(); //画像のパスを保存するカラム
+            $table->string('name');
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('horses');
     }
 };

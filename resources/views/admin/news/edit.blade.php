@@ -1,11 +1,11 @@
 @extends('layouts.admin')
-@section('title', 'ニュースの編集')
+@section('title', '日記の編集')
 
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2>ニュース編集</h2>
+                <h2>乗馬日記編集</h2>
                 <form action="{{ route('admin.news.update') }}" method="post" enctype="multipart/form-data">
                     @if (count($errors) > 0)
                         <ul>
@@ -18,6 +18,17 @@
                         <label class="col-md-2" for="title">タイトル</label>
                         <div class="col-md-10">
                             <input type="text" class="form-control" name="title" value="{{ $news_form->title }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        {{-- 騎乗馬セレクトボックスを追加 --}}
+                        <label class="col-md-2" for="horse">騎乗馬</label>
+                        <div class="col-md-4">
+                                <select name= "horse">
+                            @foreach($horses as $horse)
+                                <option value ="{{ $horse->name }}" {{ $horse->name == $news_form->horse ? 'selected' : ''}}>{{ $horse->name }} </option>
+                            @endforeach
+                        </select>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -48,7 +59,6 @@
                         </div>
                     </div>
                 </form>
-                {{-- 以下を追記 --}}
                 <div class="row mt-5">
                     <div class="col-md-4 mx-auto">
                         <h2>編集履歴</h2>
@@ -61,7 +71,6 @@
                         </ul>
                     </div>
                 </div>
-                {{-- 以上を追記 --}}
             </div>
         </div>
     </div>

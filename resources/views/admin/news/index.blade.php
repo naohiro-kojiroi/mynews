@@ -1,26 +1,39 @@
 @extends('layouts.admin')
-@section('title','登録済みニュースの一覧')
+@section('title','登録済み日記の一覧')
 
 @section('content')
     <div class="container">
         <div class="row">
-            <h2>ニュース一覧</h2>
+            <h2>乗馬日記一覧</h2>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <a href="{{ route('admin.news.add') }}" role="button" class="btn btn-primary">新規作成</a>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-4">
                 <form action="{{ route('admin.news.index') }}" method="get">
                     <div class="form-group row">
-                        <label class="col-md-2">タイトル</label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" name="cond_title" value="{{ $cond_title }}">
+                        {{-- 騎乗馬セレクトボックスを追加 --}}
+                        <label class="col-md-3" for="horse">騎乗馬</label>
+                        <div class="col-md-4">
+                                <select name= "cond_horse">
+                                <option value = "">-</option>
+                                @foreach($horses as $horse )
+                                    <option value = "{{ $horse->name }}" {{ $horse->name == $cond_horse ? "selected" : "" }}>{{ $horse->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="col-md-2">
-                            @csrf
-                            <input type="submit" class="btn btn-primary" value="検索">
+                        <div class="row">
+                            <label class="col-md-3">タイトル</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="cond_title" value="{{ $cond_title }}">
+                            </div>
+                            <div class="col-md-2">
+                                @csrf
+                                <input type="submit" class="btn btn-primary" value="検索">
+                            </div>  
                         </div>
+                        
                     </div>
                 </form>
             </div>
@@ -33,7 +46,8 @@
                             <tr>
                                 <th width="10%">ID</th>
                                 <th width="20%">タイトル</th>
-                                <th width="50%">本文</th>
+                                <th width="20%">騎乗馬</th>
+                                <th width="40%">本文</th>
                                 <th width="10%">操作</th>
                             </tr>
                         </thead>
@@ -42,6 +56,7 @@
                                <tr>
                                    <th>{{ $news->id }}</th>
                                    <td>{{ Str::limit($news->title, 100) }}</td>
+                                   <td>{{ Str::limit($news->horse, 100) }}</td>
                                    <td>{{ Str::limit($news->body, 250) }}</td>
                                    <td>
                                        <div>

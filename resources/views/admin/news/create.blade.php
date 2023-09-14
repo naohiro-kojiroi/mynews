@@ -1,13 +1,13 @@
 {{-- layouts/admin.blade.phpを読み込む --}}
 @extends('layouts.admin')
-@section('title', 'ニュースの新規作成')
+@section('title', '日記の新規作成')
 
 {{-- admin.blade.phpの@yield('title')に'プロフィール入力画面'を埋め込む --}}
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 mx-auto">
-            <h2>NEWS新規作成</h2>
+            <h2>乗馬日記新規作成</h2>
             <form action="{{ route('admin.news.create') }}" method="post" enctype="multipart/form-data">
                 
                 @if (count($errors) > 0)
@@ -21,6 +21,17 @@
                     <label class="col-md-2">タイトル</label>
                     <div class="col-md-10">
                         <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    {{-- 騎乗馬プルダウンを追加 --}}
+                    <label class="col-md-2">騎乗馬</label>
+                    <div class="col-md-4">
+                        <select name= "horse">
+                            @foreach($horses as $horse)
+                                <option value ={{ $horse->name }} >{{ $horse->name }} </option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="form-group row">
